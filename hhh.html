@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>致亲爱的程柏航</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #2b32b2 0%, #1488cc 100%);
+            font-family: "KaiTi", "楷体", "Microsoft YaHei", sans-serif;
+        }
+
+        /* 雪花特效（保留） */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            animation: fall linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(100vh); }
+        }
+
+        /* 信封容器 */
+        .envelope-container {
+            position: relative;
+            width: 600px; /* 加宽一点，更符合2/3屏幕的感觉 */
+            height: 400px;
+            /* 这里是信封放大的动画 */
+            animation: zoomIn 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        /* 放大动画 */
+        @keyframes zoomIn {
+            from { transform: scale(0.2); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* 信封底部 */
+        .envelope-bottom {
+            position: absolute;
+            width: 100%;
+            height: 260px;
+            background: #e0a050; /* 棕色信封 */
+            border-radius: 15px 15px 0 0;
+            box-shadow: inset 0 -10px 15px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        /* 信封盖子（三角形） */
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: 300px solid transparent;
+            border-right: 300px solid transparent;
+            border-top: 140px solid #d49040;
+            border-radius: 10px 10px 0 0;
+            z-index: 2;
+            /* 盖子打开动画 */
+            animation: flapOpen 0.8s 2.2s forwards;
+        }
+
+        @keyframes flapOpen {
+            from { transform: rotateX(0deg); }
+            to { transform: rotateX(-180deg); }
+        }
+
+        /* 信纸 */
+        .letter {
+            position: absolute;
+            top: 60px; /* 调整位置，确保在信封里显示 */
+            left: 50px;
+            width: 500px; /* 加宽 */
+            height: 300px; /* 关键：增加高度，防止文字被切掉 */
+            background: #fff8e1; /* 米黄色信纸 */
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 3;
+            /* 信纸弹出动画 */
+            animation: letterPop 0.6s 2.5s ease-out forwards;
+            transform: translateY(50px); /* 初始在下面 */
+            opacity: 0;
+        }
+
+        @keyframes letterPop {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* 信纸上的文字 */
+        .letter h1 {
+            font-size: 28px;
+            color: #c2185b; /* 深粉色 */
+            margin-bottom: 30px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .letter p {
+            font-size: 20px;
+            color: #555;
+            line-height: 2.5;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .letter .signature {
+            font-size: 22px;
+            color: #d81b60; /* 更鲜艳的粉色 */
+            font-weight: bold;
+            margin-top: 40px;
+            text-align: right;
+            font-style: italic;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 雪花生成脚本 -->
+    <script>
+        for (let i = 0; i < 50; i++) {
+            const snow = document.createElement('div');
+            snow.classList.add('snowflake');
+            snow.style.left = Math.random() * 100 + 'vw';
+            snow.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snow.style.animationDelay = Math.random() * 5 + 's';
+            document.body.appendChild(snow);
+        }
+    </script>
+
+    <!-- 信封结构 -->
+    <div class="envelope-container">
+        <!-- 信纸内容 -->
+        <div class="letter">
+            <h1>致亲爱的程柏航</h1>
+            <p>不要生气了，开心点 ✨</p >
+            <p>我永远在你身边</p >
+            <p class="signature">我永远爱你</p >
+        </div>
+        <!-- 信封盖子 -->
+        <div class="envelope-flap"></div>
+        <!-- 信封底部 -->
+        <div class="envelope-bottom"></div>
+    </div>
+
+</body>
+</html>
