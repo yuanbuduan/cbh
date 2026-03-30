@@ -97,7 +97,20 @@
             transform: translateY(50px); /* 初始在下面 */
             opacity: 0;
         }
-
+/* 头像样式 */
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #e0a050;
+    margin-bottom: 15px;
+    object-fit: cover;
+    animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
         @keyframes letterPop {
             to { transform: translateY(0); opacity: 1; }
         }
@@ -148,6 +161,7 @@
     <div class="envelope-container">
         <!-- 信纸内容 -->
         <div class="letter">
+            <img src="cbh.jpg" alt="头像" class="avatar">
             <h1>致亲爱的程柏航</h1>
             <p>不要生气了，开心点 ✨</p >
             <p>我永远在你身边</p >
